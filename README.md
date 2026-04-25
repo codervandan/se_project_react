@@ -1,8 +1,23 @@
-# React + Vite
+# Project Title 
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+What To Wear React Project 
 
-Currently, two official plugins are available:
+# Project Description: 
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+This project is a Full-Stack Web Application that provides users with options of what to wear based on current local weather conditions 
+
+# Technologies Used 
+
+This project uses the following web technologies: 
+- React 
+- JavaScript
+- JSX 
+- HTML
+- CSS 
+- Node.js 
+- Express.js 
+
+# GitHub Repo Link
+
+https://github.com/codervandan/se_project_react
+
