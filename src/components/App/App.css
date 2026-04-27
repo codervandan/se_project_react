@@ -1,0 +1,7 @@
+.app {
+    margin: 0 auto;
+    max-width: 1360px;
+    padding: 32px 40px 24px;
+    background-color: rgba(243, 243, 243, 1);
+    font-family: "CabinetGrotesk-Bold", sans-serif;
+}

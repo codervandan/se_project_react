@@ -1,0 +1,25 @@
+.header {
+    display: flex;
+    /* margin: 32px 40px 28px 40px; */
+    /* font-family: "CabinetGrotesk-Bold", sans-serif; */
+    /* background-color: rgba(243, 243, 243, 1); */
+}
+
+.header__logo {
+    margin-right: 24px;
+}
+
+.header__add-clothes-btn {
+    margin-left: auto;
+    margin-right: 20px;
+    background: none;
+    border: none;
+}
+
+.header__username {
+    margin-right: 12px;
+}
+
+.header__avatar {
+    margin-right: 40px;
+}
