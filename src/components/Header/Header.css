@@ -1,7 +1,8 @@
 .header {
     display: flex;
     /* margin: 32px 40px 28px 40px; */
-    /* font-family: "CabinetGrotesk-Bold", sans-serif; */
+    font-family: "Cabinet Grotesk", sans-serif;
+    font-weight: 700;
     /* background-color: rgba(243, 243, 243, 1); */
 }
 

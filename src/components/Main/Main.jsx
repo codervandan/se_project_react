@@ -6,9 +6,12 @@ function Main({clothingItems}) {
   return (
     <main className='main'>
       <WeatherCard />
+      <p>Today is 75°F / You may want to wear: </p>
+      <ul className='main__card-list'>
       {clothingItems.map((item) => {
-        return <ItemCard />
+        return <ItemCard key={item._id} data={item} />;
       })}
+      </ul>
     </main>
   );
 }

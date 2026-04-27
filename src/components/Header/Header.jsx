@@ -4,7 +4,7 @@ import './Header.css';
 import '../Main/Main.css';
 import '../App/App.css';
 
-function Header({ ModalWithForm }) {
+function Header({ handleOpenAddGarmentModal }) {
 	const now = new Date();
 	const dateStr = now.toLocaleDateString('default', { month: 'long', day: 'numeric' });
   return (
@@ -14,7 +14,7 @@ function Header({ ModalWithForm }) {
 				<time className="header__datetime" dateTime={now}>{dateStr}</time>
 				, Stayton
 			</p>
-			<button className="header__add-clothes-btn" onClick={ModalWithForm}>+ Add Clothes</button>
+			<button onClick={handleOpenAddGarmentModal} className="header__add-clothes-btn">+ Add Clothes</button>
 			<p className="header__username">Daniel Quintana</p>
 			<img className="header__avatar" src={avatar} alt="Daniel Quintana" />
     </header>
