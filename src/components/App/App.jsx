@@ -24,6 +24,10 @@ import './App.css';
     setActiveModal("add-garment-modal");
   }
 
+  function handleCloseModal() {
+    setActiveModal("");
+  }
+
   // TODO - make the modal close
   // 1. create a handler function that sets activeModal to "" (or null)
   // 2. pass the handler to the modals and set up click listners on the close button and the overlay
@@ -31,11 +35,16 @@ import './App.css';
   return (
     <div className="app">
       <Header handleOpenAddGarmentModal={handleOpenAddGarmentModal} />
-      <Main clothingItems={clothingItems}/>
+      <Main clothingItems={clothingItems} handleOpenItemModal={handleOpenItemModal} />
       <Footer />
-      <ItemModal card={selectedCard} isOpen={activeModal === "item-modal"} />
+      <ItemModal 
+      card={selectedCard} 
+      isOpen={activeModal === "item-modal"} 
+      onClose={handleCloseModal}
+      />
       <ModalWithForm 
         isOpen={activeModal === "add-garment-modal"}
+        onClose={handleCloseModal}
         title="New garment"
         buttonText="Add garment"
         name="add-garment-form"

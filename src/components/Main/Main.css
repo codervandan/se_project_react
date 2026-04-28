@@ -1,8 +1,15 @@
 .main__card-list {
     display: flex;
+    justify-content: center;
     flex-wrap: wrap;
     gap: 20px;
     list-style-type: none;
     padding: 0;
     margin: 0;
+}
+
+.weather-description {
+    font-family: "Cabinet Grotesk", sans-serif;
+    font-weight: 700;
+    font-size: 20px;
 }
