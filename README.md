@@ -19,5 +19,5 @@ This project uses the following web technologies:
 
 # GitHub Repo Link
 
-https://github.com/codervandan/se_project_react
+https://github.com/codervandan/se_project_react/tree/main
 
