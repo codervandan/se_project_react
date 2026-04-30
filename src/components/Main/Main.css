@@ -1,5 +1,7 @@
 .main__card-list {
-    display: flex;
+    /* display: flex; */
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);  
     justify-content: center;
     flex-wrap: wrap;
     gap: 20px;

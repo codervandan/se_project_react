@@ -1,10 +1,12 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import Header from '../Header/Header';
 import Main from '../Main/Main';
 import Footer from '../Footer/Footer';
 import ItemModal from '../ItemModal/ItemModal.jsx';
 import ModalWithForm from '../ModalWithForm/ModalWithForm';
+import { getWeatherData } from '../../utils/weatherApi';
+import { coordinates, apiKey, baseUrl } from '../../utils/constants';
 
 import { defaultClothingItems } from '../../utils/defaultClothingItems';
 import './App.css';
@@ -27,6 +29,14 @@ import './App.css';
   function handleCloseModal() {
     setActiveModal("");
   }
+
+  useEffect(() => {
+    getWeatherData()
+    .then((data) => {
+      console.log(data);
+    })
+    .catch(console.error);
+  }, []);
 
   // TODO - make the modal close
   // 1. create a handler function that sets activeModal to "" (or null)
