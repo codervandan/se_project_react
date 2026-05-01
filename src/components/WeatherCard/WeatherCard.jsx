@@ -1,12 +1,12 @@
 import weatherCard from '../../assets/cloudy-card.svg';
 import './WeatherCard.css';
 
-function WeatherCard() {
+function WeatherCard({ weatherData}) {
     return(
          <>
          <section className="weather-card">
             <img src={weatherCard} alt="CloudyWeather" className="weather-card__image" />
-            <p className="weather-card__temp">75&deg; F</p>
+            <p className="weather-card__temp">{weatherData.temp}</p>
         </section>
         {/* <p>Today is 75°F / You may want to wear: </p> */}
         </> 
