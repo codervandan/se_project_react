@@ -10,7 +10,10 @@ function WeatherCard({ weatherData}) {
     if (!weatherData) return null;
 
     const condition = weatherData.weatherCondition?.toLowerCase();
-    const image = weatherConditionImages["day"][condition]?.image || weatherCard;
+
+    const timeOfDay = weatherData.isDay ? "day" : "night";
+    
+    const image = weatherConditionImages[timeOfDay][condition]?.image || weatherCard;
 
     console.log(currentTempUnit);
     return(
@@ -19,6 +22,6 @@ function WeatherCard({ weatherData}) {
             <p className="weather-card__temp">{weatherData.temp[currentTempUnit]} {currentTempUnit}</p>
         </section> 
     );
-}
+}  
 
 export default WeatherCard;

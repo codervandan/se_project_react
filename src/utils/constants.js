@@ -24,22 +24,22 @@ const weatherConditionImages = {
         },
     },
     night: {
-        "sunny-night": {
+        "sunny": {
             image: new URL('../assets/Night/sunny-night.svg', import.meta.url),
         },
-        "clouds-night": {
+        "clouds": {
             image: new URL('../assets/Night/cloudy-night.svg', import.meta.url),
         },
-        "rain-night": {
+        "rain": {
             image: new URL('../assets/Night/rain-night.svg', import.meta.url),
         },
-        "snow-night": {
+        "snow": {
             image: new URL('../assets/Night/snow-night.svg', import.meta.url),
         },
-        "fog-night": {
+        "fog": {
             image: new URL('../assets/Night/fog-night.svg', import.meta.url),
         },
-        "storm-night": {
+        "storm": {
             image: new URL('../assets/Night/storm-night.svg', import.meta.url),
         },
     }

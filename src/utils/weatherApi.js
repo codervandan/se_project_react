@@ -19,11 +19,13 @@ function parseWeatherData(data) {
     // parsedData.weatherCondition = data.weather[0].main.toLowerCase();
     parsedData.weatherCondition = "clouds";
 
-    parsedData.isDay = isDay(data.sys);
+    parsedData.isDay = isDay(data.sys, Date.now());
 
     return parsedData;
 }
 
 function isDay({sunrise, sunset}, timestamp) {
-    return sunrise < timestamp && timestamp < sunset;
+    const timestampInSeconds = Math.floor(timestamp / 1000);
+    return sunrise < timestampInSeconds && timestampInSeconds < sunset;
+
 }
