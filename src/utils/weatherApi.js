@@ -10,10 +10,18 @@ export function getWeatherData() {
 }
 
 function parseWeatherData(data) {
-    const parsedData = {};
+    const parsedData = { temp: {}};
 
     parsedData.city = data.name;
-    parsedData.temp = Math.floor(data.main.temp) + "°" + " " + "F";
+    parsedData.temp.F = Math.floor(data.main.temp) + "°";
+    parsedData.temp.C = Math.floor((data.main.temp - 32) * (5/9)) + "°";
+    
+    // parsedData.weatherCondition = data.weather[0].main.toLowerCase();
+    parsedData.weatherCondition = "clouds";
 
     return parsedData;
+}
+
+function isDay(sunrise, sunset, timestamp) {
+    return timestamp >= sunrise && timestamp < sunset;
 }

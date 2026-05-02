@@ -56,8 +56,13 @@
     border-radius: 4px;
     border: none;
     margin-top: 32px;
-    background-color: rgba(0, 0, 0, 0.3);
+    background-color: rgba(0, 0, 0, 1);
     color: white;
+}
+
+.modal__submit-btn:hover {
+    background-color: rgba(0, 0, 0, 0.6);
+    cursor: pointer;
 }
 
 .modal__close-btn {

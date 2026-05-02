@@ -3,10 +3,13 @@ import ItemCard from '../ItemCard/ItemCard';
 import './Main.css';
 
 function Main({ clothingItems, handleOpenItemModal, weatherData }) {
+  // TODO - display correct temp
+  // TODO - make temp unit change with context
+  // TODO - filter item cards based on weather
   return (
     <main className='main'>
       <WeatherCard weatherData={weatherData} />
-      <p className="weather-description">Today is {weatherData.temp} / You may want to wear: </p>
+      <p className="weather-description">Today is {weatherData.temp.F} / You may want to wear: </p>
       <ul className='main__card-list'>
       {clothingItems.map((item) => {
         return (

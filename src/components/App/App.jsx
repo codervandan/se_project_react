@@ -5,17 +5,21 @@ import Main from '../Main/Main';
 import Footer from '../Footer/Footer';
 import ItemModal from '../ItemModal/ItemModal.jsx';
 import ModalWithForm from '../ModalWithForm/ModalWithForm';
+import CurrentTemperatureUnitContext from '../../context/CurrentTemperatureUnitContext.js';
+
+
 import { getWeatherData } from '../../utils/weatherApi';
 import { coordinates, apiKey, baseUrl } from '../../utils/constants';
-
 import { defaultClothingItems } from '../../utils/defaultClothingItems';
+
 import './App.css';
 
   function App() {
-  const [clothingItems, setClothingItems] = useState(defaultClothingItems);
+  const [clothingItems, setClothingItems] = useState([]);
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
   const [weatherData, setWeatherData] = useState({name: "", temp: "0"});
+  const [currentTempUnit, setCurrentTempUnit] = useState("F");
 
   function handleOpenItemModal(card) {
     setActiveModal("item-modal");
@@ -26,6 +30,14 @@ import './App.css';
     console.log("click");
     setActiveModal("add-garment-modal");
   }
+
+  function handleTempUnitChange() {
+        if (currentTempUnit === "F") {
+            setCurrentTempUnit("C");
+        } else {
+            setCurrentTempUnit("F");
+        }
+    }
 
   function handleCloseModal() {
     setActiveModal("");
@@ -40,11 +52,16 @@ import './App.css';
     .catch(console.error);
   }, []);
 
+  useEffect(() => {
+    setClothingItems(defaultClothingItems);
+  }, []);
+
   // TODO - make the modal close
   // 1. create a handler function that sets activeModal to "" (or null)
   // 2. pass the handler to the modals and set up click listners on the close button and the overlay
   
   return (
+    <CurrentTemperatureUnitContext.Provider value={{currentTempUnit, handleTempUnitChange}}>
     <div className="app">
       <Header 
       weatherData={weatherData}
@@ -97,6 +114,7 @@ import './App.css';
 
       </ModalWithForm> 
     </div>
+    </CurrentTemperatureUnitContext.Provider>
   )
 }
 
