@@ -1,0 +1,14 @@
+.sidebar {
+  min-width: 229px;
+}
+
+.sidebar__row {
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 16px;
+  justify-content: left;
+}
+
+.sidebar__username {
+  white-space: nowrap;
+}
