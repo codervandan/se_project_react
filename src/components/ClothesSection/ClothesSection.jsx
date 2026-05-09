@@ -1,12 +1,15 @@
 import "./ClothesSection.css";
 import ItemCard from "../ItemCard/ItemCard";
 
-function ClothesSection({ clothingItems, handleOpenItemModal }) {
+// TODO - make the item modal open on the profile route
+function ClothesSection({ clothingItems, handleOpenItemModal, handleOpenAddGarmentModal }) {
   return (
     <section className="clothes-section__block">
       <div className="clothes-section__row">
         Your Items
-        <button className="clothes-section__btn">+ Add new</button>
+        <button className="clothes-section__btn" onClick={handleOpenAddGarmentModal}>
+          + Add new
+        </button>
       </div>
       <ul className="clothes-section__card-list">
         {clothingItems.map((item) => {
