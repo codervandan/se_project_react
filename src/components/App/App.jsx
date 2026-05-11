@@ -85,26 +85,35 @@ function App() {
   return (
     <CurrentTemperatureUnitContext.Provider value={{ currentTempUnit, handleTempUnitChange }}>
       <div className="app">
-        <Header weatherData={weatherData} handleOpenAddGarmentModal={handleOpenAddGarmentModal} />
-        <Routes>
-          <Route
-            path="/"
-            element={<Main weatherData={weatherData} clothingItems={clothingItems} handleOpenItemModal={handleOpenItemModal} />}
-          ></Route>
-          <Route
-            path="/profile"
-            element={
-              <Profile
-                clothingItems={clothingItems}
-                handleOpenAddGarmentModal={handleOpenAddGarmentModal}
-                handleOpenItemModal={handleOpenItemModal}
-              />
-            }
-          ></Route>
-        </Routes>
-        <Footer />
-        <ItemModal card={selectedCard} isOpen={activeModal === "item-modal"} onClose={handleCloseModal} onDeleteItem={handleDeleteItem} />
-        <AddItemModal isOpen={activeModal === "add-garment-modal"} onClose={handleCloseModal} handleAddItemSubmit={handleAddItemSubmit} />
+        <div className="app__content">
+          <Header weatherData={weatherData} handleOpenAddGarmentModal={handleOpenAddGarmentModal} />
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <Main
+                  weatherData={weatherData}
+                  clothingItems={clothingItems}
+                  handleOpenItemModal={handleOpenItemModal}
+                  currentTempUnit={currentTempUnit}
+                />
+              }
+            ></Route>
+            <Route
+              path="/profile"
+              element={
+                <Profile
+                  clothingItems={clothingItems}
+                  handleOpenAddGarmentModal={handleOpenAddGarmentModal}
+                  handleOpenItemModal={handleOpenItemModal}
+                />
+              }
+            ></Route>
+          </Routes>
+          <Footer />
+          <ItemModal card={selectedCard} isOpen={activeModal === "item-modal"} onClose={handleCloseModal} onDeleteItem={handleDeleteItem} />
+          <AddItemModal isOpen={activeModal === "add-garment-modal"} onClose={handleCloseModal} handleAddItemSubmit={handleAddItemSubmit} />
+        </div>
       </div>
     </CurrentTemperatureUnitContext.Provider>
   );

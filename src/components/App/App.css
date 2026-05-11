@@ -1,8 +1,11 @@
 .app {
-    margin: 0 auto;
-    max-width: 1360px;
-    padding: 32px 40px 24px;
-    background-color: rgba(243, 243, 243, 1);
-    font-family: "Cabinet Grotesk", sans-serif;
-    font-weight: 700;
+  background-color: rgba(243, 243, 243, 1);
+  font-family: "Cabinet Grotesk", sans-serif;
+  font-weight: 700;
+}
+
+.app__content {
+  margin: 0 auto;
+  max-width: 1360px;
+  padding: 32px 40px 24px;
 }

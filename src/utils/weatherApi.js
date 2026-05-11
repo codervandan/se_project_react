@@ -1,31 +1,42 @@
 import { coordinates, apiKey, baseUrl } from "./constants";
 
-
-export function getWeatherData() {   
-    return fetch(baseUrl).then((res) => {
-        return res.ok ? res.json() : Promise.reject(`Error from weather API: ${res.status}`);
-    }).then((data) => {
-        return parseWeatherData(data);
+export function getWeatherData() {
+  return fetch(baseUrl)
+    .then((res) => {
+      return res.ok ? res.json() : Promise.reject(`Error from weather API: ${res.status}`);
+    })
+    .then((data) => {
+      return parseWeatherData(data);
     });
 }
 
 function parseWeatherData(data) {
-    const parsedData = { temp: {}};
+  const parsedData = { temp: {} };
 
-    parsedData.city = data.name;
-    parsedData.temp.F = Math.floor(data.main.temp) + "°";
-    parsedData.temp.C = Math.floor((data.main.temp - 32) * (5/9)) + "°";
-    
-    // parsedData.weatherCondition = data.weather[0].main.toLowerCase();
-    parsedData.weatherCondition = "clouds";
+  parsedData.city = data.name;
+  parsedData.type = getWeatherType(data.main.temp);
+  parsedData.temp.F = Math.floor(data.main.temp) + "°";
+  parsedData.temp.C = Math.floor((data.main.temp - 32) * (5 / 9)) + "°";
 
-    parsedData.isDay = isDay(data.sys, Date.now());
+  // parsedData.weatherCondition = data.weather[0].main.toLowerCase();
+  parsedData.weatherCondition = "clouds";
 
-    return parsedData;
+  parsedData.isDay = isDay(data.sys, Date.now());
+
+  return parsedData;
 }
 
-function isDay({sunrise, sunset}, timestamp) {
-    const timestampInSeconds = Math.floor(timestamp / 1000);
-    return sunrise < timestampInSeconds && timestampInSeconds < sunset;
+function isDay({ sunrise, sunset }, timestamp) {
+  const timestampInSeconds = Math.floor(timestamp / 1000);
+  return sunrise < timestampInSeconds && timestampInSeconds < sunset;
+}
 
+function getWeatherType(temp) {
+  if (temp >= 86) {
+    return "hot";
+  }
+  if (temp >= 66 && temp <= 85) {
+    return "warm";
+  }
+  return "cold";
 }
