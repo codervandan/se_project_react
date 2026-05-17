@@ -10,7 +10,7 @@ import Profile from "../Profile/Profile";
 import AddItemModal from "../AddItemModal/AddItemModal.jsx";
 
 import { getWeatherData } from "../../utils/weatherApi";
-import { coordinates, apiKey, baseUrl } from "../../utils/constants";
+import { coordinates } from "../../utils/constants";
 import { getItems, addItem, deleteItem } from "../../utils/api";
 // import { defaultClothingItems } from "../../utils/defaultClothingItems";
 
@@ -66,12 +66,32 @@ function App() {
   }
 
   useEffect(() => {
-    getWeatherData()
-      .then((data) => {
-        console.log(data);
-        setWeatherData(data);
-      })
-      .catch(console.error);
+    const handleWeatherSuccess = (position) => {
+      const { latitude, longitude } = position.coords;
+      getWeatherData(latitude, longitude)
+        .then((data) => {
+          setWeatherData(data);
+        })
+        .catch(console.error);
+    };
+
+    const handleWeatherError = (error) => {
+      console.warn("Geolocation failed, using fallback coordinates:", error.message);
+      getWeatherData(coordinates.latitude, coordinates.longitude)
+        .then((data) => {
+          setWeatherData(data);
+        })
+        .catch(console.error);
+    };
+
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(handleWeatherSuccess, handleWeatherError, {
+        maximumAge: 600000,
+        timeout: 10000,
+      });
+    } else {
+      handleWeatherError(new Error("Geolocation is not supported by this browser."));
+    }
   }, []);
 
   useEffect(() => {

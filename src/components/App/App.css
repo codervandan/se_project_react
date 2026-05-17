@@ -2,6 +2,7 @@
   background-color: rgba(243, 243, 243, 1);
   font-family: "Cabinet Grotesk", sans-serif;
   font-weight: 700;
+  min-height: 100vh;
 }
 
 .app__content {

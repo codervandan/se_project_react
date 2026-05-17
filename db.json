@@ -55,10 +55,10 @@
       "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Sunglasses.png?etag=a1bced9e331d36cb278c45df51150432"
     },
     {
-      "_id": 15,
-      "name": "Sweatshirt",
-      "weather": "warm",
-      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Sweatshirt.png?etag=008a9674757bea2e0bdb31242e364be0"
+      "name": "boots",
+      "imageUrl": "https://tse2.mm.bing.net/th/id/OIP.ullHMDr7-OO0vlFQh3JhvAHaHa?rs=1&pid=ImgDetMain&o=7&rm=3",
+      "weather": "Cold",
+      "_id": 15
     }
   ]
 }

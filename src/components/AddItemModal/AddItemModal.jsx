@@ -1,17 +1,33 @@
-import { useForm } from "../../hooks/useForm";
+import { useEffect } from "react";
+import { useFormWithValidation } from "../../hooks/useFormWithValidation";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
+
+const defaultFormValues = { name: "", weather: "", imageUrl: "" };
 
 // onAddItem refers to the submit handler declared in App.jsx
 function AddItemModal({ isOpen, onClose, handleAddItemSubmit }) {
-  // const AddItemModal = ({ isOpen, onAddItem, onCloseModal }) => {}
-  const { values, handleChange } = useForm({ name: "", weather: "", imageUrl: "" });
+  const { values, handleChange, errors, isValid, isSubmitted, setIsSubmitted, resetForm, validateAll } =
+    useFormWithValidation(defaultFormValues);
+
+  useEffect(() => {
+    if (!isOpen) {
+      resetForm();
+    }
+  }, [isOpen, resetForm]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    handleAddItemSubmit(values);
-  };
 
-  // TODO - implement reset form
+    const valid = validateAll();
+    setIsSubmitted(true);
+
+    if (!valid) {
+      return;
+    }
+
+    handleAddItemSubmit(values);
+    resetForm();
+  };
 
   return (
     <ModalWithForm
@@ -27,27 +43,27 @@ function AddItemModal({ isOpen, onClose, handleAddItemSubmit }) {
           Name
           <input
             id="add-garment-name-input"
-            className="modal__input"
+            className={`modal__input ${isSubmitted && errors.name ? "modal__input_invalid" : ""}`}
             type="text"
             name="name"
             value={values.name}
             onChange={handleChange}
             placeholder="Name"
-            required
           />
+          {isSubmitted && errors.name && <span className="modal__input-error">{errors.name}</span>}
         </label>
         <label htmlFor="add-garment-link-input" className="modal__label">
           Link
           <input
             id="add-garment-link-input"
-            className="modal__input"
+            className={`modal__input ${isSubmitted && errors.imageUrl ? "modal__input_invalid" : ""}`}
             type="url"
             name="imageUrl"
             placeholder="Image URL"
             value={values.imageUrl}
             onChange={handleChange}
-            required
           />
+          {isSubmitted && errors.imageUrl && <span className="modal__input-error">{errors.imageUrl}</span>}
         </label>
       </fieldset>
 
@@ -55,7 +71,7 @@ function AddItemModal({ isOpen, onClose, handleAddItemSubmit }) {
         <legend className="modal__legend-title">Select the weather type:</legend>
         <div>
           <input
-            className="modal__radio-btn"
+            className={`modal__radio-btn ${isSubmitted && errors.weather ? "modal__input_invalid" : ""}`}
             type="radio"
             id="hot"
             name="weather"
@@ -69,7 +85,7 @@ function AddItemModal({ isOpen, onClose, handleAddItemSubmit }) {
         </div>
         <div>
           <input
-            className="modal__radio-btn"
+            className={`modal__radio-btn ${isSubmitted && errors.weather ? "modal__input_invalid" : ""}`}
             type="radio"
             id="warm"
             name="weather"
@@ -83,7 +99,7 @@ function AddItemModal({ isOpen, onClose, handleAddItemSubmit }) {
         </div>
         <div>
           <input
-            className="modal__radio-btn"
+            className={`modal__radio-btn ${isSubmitted && errors.weather ? "modal__input_invalid" : ""}`}
             type="radio"
             id="cold"
             name="weather"
@@ -96,6 +112,7 @@ function AddItemModal({ isOpen, onClose, handleAddItemSubmit }) {
           </label>
         </div>
       </fieldset>
+      {isSubmitted && errors.weather && <span className="modal__input-error">{errors.weather}</span>}
     </ModalWithForm>
   );
 }

@@ -1,1 +1,17 @@
-{}
+.modal__input_invalid {
+  border: 2px solid red;
+  outline: none;
+  box-shadow: 0 0 0 1px rgba(255, 0, 0, 0.5);
+}
+
+.modal__radio-btn.modal__input_invalid {
+  outline: 2px solid red;
+  box-shadow: 0 0 0 1px rgba(255, 0, 0, 0.5);
+}
+
+.modal__input-error {
+  color: red;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+  display: block;
+}

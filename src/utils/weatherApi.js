@@ -1,7 +1,9 @@
-import { coordinates, apiKey, baseUrl } from "./constants";
+import { coordinates, getWeatherUrl } from "./constants";
 
-export function getWeatherData() {
-  return fetch(baseUrl)
+export function getWeatherData(latitude = coordinates.latitude, longitude = coordinates.longitude) {
+  const url = getWeatherUrl(latitude, longitude);
+
+  return fetch(url)
     .then((res) => {
       return res.ok ? res.json() : Promise.reject(`Error from weather API: ${res.status}`);
     })
