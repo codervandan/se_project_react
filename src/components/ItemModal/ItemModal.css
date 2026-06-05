@@ -34,6 +34,8 @@
   border-radius: 16px;
   overflow: hidden;
   cursor: pointer;
+  max-width: 498px;
+  width: 100%;
 }
 
 .modal__container_type_form {
@@ -50,6 +52,10 @@
 
 .modal__image {
   display: block;
+  width: 100%;
+  max-width: 498px;
+  height: 498px;
+  object-fit: cover;
 }
 
 .modal__submit-btn {

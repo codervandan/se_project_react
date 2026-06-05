@@ -4,7 +4,20 @@ import "./Main.css";
 
 function Main({ clothingItems, handleOpenItemModal, weatherData, currentTempUnit }) {
   const temperature = weatherData?.temp?.[currentTempUnit] ?? "N/A";
-  const filteredItems = clothingItems.filter((item) => item.weather === weatherData.type);
+
+  console.log("WEATHER TYPE:", weatherData.type);
+  console.log(
+    "CLOTHING ITEMS:",
+    clothingItems.map((item) => ({
+      name: item.name,
+      weather: item.weather,
+      imageUrl: item.imageUrl,
+    })),
+  );
+
+  // const filteredItems = clothingItems.filter((item) => item.weather === weatherData.type);
+  const filteredItems = clothingItems;
+  console.log("FILTERED ITEMS:", filteredItems);
 
   return (
     <main className="main">

@@ -12,3 +12,24 @@
 .sidebar__username {
   white-space: nowrap;
 }
+
+.sidebar__signout-btn {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+
+  padding: 0;
+  margin-top: 8px;
+
+  font-family: "Cabinet Grotesk", sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 24px;
+
+  color: #000;
+  text-align: left;
+}
+
+.sidebar__signout-btn:hover {
+  opacity: 0.6;
+}

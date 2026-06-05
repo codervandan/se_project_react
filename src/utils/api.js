@@ -7,26 +7,34 @@ function getItems() {
 }
 
 function addItem({ name, imageUrl, weather }) {
+  const token = localStorage.getItem("jwt");
+
   return fetch(`${baseURL}/items`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      authorization: `Bearer ${token}`,
     },
-    body: JSON.stringify({ name, imageUrl, weather }),
+    body: JSON.stringify({
+      name,
+      imageUrl,
+      weather,
+    }),
   }).then((res) => {
-    return res.ok ? res.json() : Promise.reject(`Error from weather API: ${res.status}`);
+    return res.ok ? res.json() : Promise.reject(`Error from API: ${res.status}`);
   });
 }
 
-// TODO - add different parameter (id instead of the object)
-// TODO - add different method
-// TODO - no body is necessary
-// TODO - embed the ID in the URL
 function deleteItem(id) {
+  const token = localStorage.getItem("jwt");
+
   return fetch(`${baseURL}/items/${id}`, {
     method: "DELETE",
+    headers: {
+      authorization: `Bearer ${token}`,
+    },
   }).then((res) => {
-    return res.ok ? Promise.resolve() : Promise.reject(`Error from weather API: ${res.status}`);
+    return res.ok ? Promise.resolve() : Promise.reject(`Error from API: ${res.status}`);
   });
 }
 

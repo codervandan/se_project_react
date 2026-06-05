@@ -6,8 +6,7 @@ const defaultFormValues = { name: "", weather: "", imageUrl: "" };
 
 // onAddItem refers to the submit handler declared in App.jsx
 function AddItemModal({ isOpen, onClose, handleAddItemSubmit }) {
-  const { values, handleChange, errors, isValid, isSubmitted, setIsSubmitted, resetForm, validateAll } =
-    useFormWithValidation(defaultFormValues);
+  const { values, handleChange, errors, isSubmitted, setIsSubmitted, resetForm, validateAll } = useFormWithValidation(defaultFormValues);
 
   useEffect(() => {
     if (!isOpen) {
@@ -75,8 +74,8 @@ function AddItemModal({ isOpen, onClose, handleAddItemSubmit }) {
             type="radio"
             id="hot"
             name="weather"
-            value="Hot"
-            checked={values.weather === "Hot"}
+            value="hot"
+            checked={values.weather === "hot"}
             onChange={handleChange}
           />
           <label className="modal__label" htmlFor="hot">
@@ -89,8 +88,8 @@ function AddItemModal({ isOpen, onClose, handleAddItemSubmit }) {
             type="radio"
             id="warm"
             name="weather"
-            value="Warm"
-            checked={values.weather === "Warm"}
+            value="warm"
+            checked={values.weather === "warm"}
             onChange={handleChange}
           />
           <label className="modal__label" htmlFor="warm">
@@ -103,8 +102,8 @@ function AddItemModal({ isOpen, onClose, handleAddItemSubmit }) {
             type="radio"
             id="cold"
             name="weather"
-            value="Cold"
-            checked={values.weather === "Cold"}
+            value="cold"
+            checked={values.weather === "cold"}
             onChange={handleChange}
           />
           <label className="modal__label" htmlFor="cold">
