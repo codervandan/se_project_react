@@ -9,7 +9,7 @@ const defaultFormValues = {
   password: "",
 };
 
-function RegisterModal({ isOpen, onClose, handleRegister }) {
+function RegisterModal({ isOpen, onClose, handleRegister, onSwitchToLogin }) {
   const { values, handleChange, errors, isSubmitted, setIsSubmitted, resetForm, validateAll } = useFormWithValidation(defaultFormValues);
 
   useEffect(() => {
@@ -43,7 +43,9 @@ function RegisterModal({ isOpen, onClose, handleRegister }) {
       isOpen={isOpen}
       onClose={onClose}
       title="Register"
-      buttonText="Register"
+      buttonText="Sign Up"
+      secondaryButtonText="or Log In"
+      onSecondaryClick={onSwitchToLogin}
       name="register-form"
       handleSubmit={handleSubmit}
     >

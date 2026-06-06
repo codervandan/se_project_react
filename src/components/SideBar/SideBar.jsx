@@ -3,7 +3,7 @@ import { useContext } from "react";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 import "./SideBar.css";
 
-function SideBar({ handleSignOut }) {
+function SideBar({ handleSignOut, handleOpenEditProfileModal }) {
   const currentUser = useContext(CurrentUserContext);
 
   return (
@@ -12,6 +12,9 @@ function SideBar({ handleSignOut }) {
         <p className="sidebar__username">{currentUser?.name || ""}</p>
         <img className="sidebar__avatar" src={currentUser?.avatar || avatar} alt={currentUser?.name || "Avatar"} />
       </div>
+      <button onClick={handleOpenEditProfileModal} className="sidebar__edit-btn">
+        Change Profile Data
+      </button>
       <button onClick={handleSignOut} className="sidebar__signout-btn">
         Sign Out
       </button>

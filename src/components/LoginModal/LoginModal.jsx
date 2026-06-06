@@ -7,7 +7,7 @@ const defaultFormValues = {
   password: "",
 };
 
-function LoginModal({ isOpen, onClose, handleLogin }) {
+function LoginModal({ isOpen, onClose, handleLogin, onSwitchToRegister }) {
   const { values, handleChange, errors, isSubmitted, setIsSubmitted, resetForm, validateAll } = useFormWithValidation(defaultFormValues);
 
   useEffect(() => {
@@ -35,7 +35,16 @@ function LoginModal({ isOpen, onClose, handleLogin }) {
   };
 
   return (
-    <ModalWithForm isOpen={isOpen} onClose={onClose} title="Log In" buttonText="Log In" name="login-form" handleSubmit={handleSubmit}>
+    <ModalWithForm
+      isOpen={isOpen}
+      onClose={onClose}
+      title="Log In"
+      buttonText="Log In"
+      secondaryButtonText="or Sign Up"
+      onSecondaryClick={onSwitchToRegister}
+      name="login-form"
+      handleSubmit={handleSubmit}
+    >
       <fieldset className="modal__fieldset">
         <label htmlFor="login-email-input" className="modal__label">
           Email

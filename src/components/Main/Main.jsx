@@ -2,7 +2,7 @@ import WeatherCard from "../WeatherCard/WeatherCard";
 import ItemCard from "../ItemCard/ItemCard";
 import "./Main.css";
 
-function Main({ clothingItems, handleOpenItemModal, weatherData, currentTempUnit }) {
+function Main({ clothingItems, handleOpenItemModal, weatherData, currentTempUnit, onCardLike }) {
   const temperature = weatherData?.temp?.[currentTempUnit] ?? "N/A";
 
   console.log("WEATHER TYPE:", weatherData.type);
@@ -25,7 +25,7 @@ function Main({ clothingItems, handleOpenItemModal, weatherData, currentTempUnit
       <p className="weather-description">Today is {temperature} / You may want to wear: </p>
       <ul className="main__card-list">
         {filteredItems.map((item) => {
-          return <ItemCard key={item._id} data={item} onCardClick={handleOpenItemModal} />;
+          return <ItemCard key={item._id} data={item} onCardClick={handleOpenItemModal} onCardLike={onCardLike} />;
         })}
       </ul>
     </main>

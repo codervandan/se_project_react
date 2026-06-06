@@ -10,7 +10,8 @@ import AddItemModal from "../AddItemModal/AddItemModal.jsx";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import { getWeatherData } from "../../utils/weatherApi";
 import { coordinates } from "../../utils/constants";
-import { getItems, addItem, deleteItem } from "../../utils/api";
+import { getItems, addItem, deleteItem, addCardLike, removeCardLike, updateProfile } from "../../utils/api";
+import EditProfileModal from "../EditProfileModal/EditProfileModal";
 
 // import { useNavigate } from "react-router-dom";
 import LoginModal from "../LoginModal/LoginModal";
@@ -41,6 +42,10 @@ function App() {
 
   function handleOpenLoginModal() {
     setActiveModal("login-modal");
+  }
+
+  function handleOpenEditProfileModal() {
+    setActiveModal("edit-profile-modal");
   }
 
   function handleOpenRegisterModal() {
@@ -75,7 +80,6 @@ function App() {
       });
   }
 
-  // TODO - pass as a prop
   function handleDeleteItem(item) {
     deleteItem(item._id)
       .then(() => {
@@ -84,6 +88,24 @@ function App() {
       })
       .catch(console.error);
   }
+
+  const handleCardLike = ({ id, isLiked }) => {
+    const token = localStorage.getItem("jwt");
+
+    if (!isLiked) {
+      addCardLike(id, token)
+        .then((updatedCard) => {
+          setClothingItems((cards) => cards.map((item) => (item._id === id ? updatedCard : item)));
+        })
+        .catch(console.error);
+    } else {
+      removeCardLike(id, token)
+        .then((updatedCard) => {
+          setClothingItems((cards) => cards.map((item) => (item._id === id ? updatedCard : item)));
+        })
+        .catch(console.error);
+    }
+  };
 
   const handleLogin = ({ email, password }) => {
     auth
@@ -123,6 +145,19 @@ function App() {
       .then((userData) => {
         setCurrentUser(userData);
         setIsLoggedIn(true);
+        handleCloseModal();
+      })
+      .catch(console.error);
+  };
+
+  const handleUpdateProfile = ({ name, avatar }) => {
+    updateProfile({
+      name,
+      avatar,
+    })
+      .then((updatedUser) => {
+        setCurrentUser(updatedUser);
+
         handleCloseModal();
       })
       .catch(console.error);
@@ -214,6 +249,7 @@ function App() {
                     clothingItems={clothingItems}
                     handleOpenItemModal={handleOpenItemModal}
                     currentTempUnit={currentTempUnit}
+                    onCardLike={handleCardLike}
                   />
                 }
               ></Route>
@@ -226,6 +262,7 @@ function App() {
                       handleOpenAddGarmentModal={handleOpenAddGarmentModal}
                       handleOpenItemModal={handleOpenItemModal}
                       handleSignOut={handleSignOut}
+                      handleOpenEditProfileModal={handleOpenEditProfileModal}
                     />
                   </ProtectedRoute>
                 }
@@ -244,9 +281,23 @@ function App() {
               handleAddItemSubmit={handleAddItemSubmit}
             />
 
-            <LoginModal isOpen={activeModal === "login-modal"} onClose={handleCloseModal} handleLogin={handleLogin} />
-
-            <RegisterModal isOpen={activeModal === "register-modal"} onClose={handleCloseModal} handleRegister={handleRegister} />
+            <LoginModal
+              isOpen={activeModal === "login-modal"}
+              onClose={handleCloseModal}
+              handleLogin={handleLogin}
+              onSwitchToRegister={handleOpenRegisterModal}
+            />
+            <EditProfileModal
+              isOpen={activeModal === "edit-profile-modal"}
+              onClose={handleCloseModal}
+              onUpdateProfile={handleUpdateProfile}
+            />
+            <RegisterModal
+              isOpen={activeModal === "register-modal"}
+              onClose={handleCloseModal}
+              handleRegister={handleRegister}
+              onSwitchToLogin={handleOpenLoginModal}
+            />
           </div>
         </div>
       </CurrentTemperatureUnitContext.Provider>

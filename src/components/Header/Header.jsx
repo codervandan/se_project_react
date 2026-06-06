@@ -27,9 +27,11 @@ function Header({ handleOpenAddGarmentModal, weatherData, isLoggedIn, handleOpen
       </div>
       <div className="header__side">
         <ToggleSwitch />
-        <button onClick={handleOpenAddGarmentModal} className="header__add-clothes-btn">
-          + Add Clothes
-        </button>
+        {isLoggedIn && (
+          <button onClick={handleOpenAddGarmentModal} className="header__add-clothes-btn">
+            + Add Clothes
+          </button>
+        )}
         {isLoggedIn ? (
           <Link className="header__link" to="/profile">
             <p className="header__username">{currentUser?.name || ""}</p>

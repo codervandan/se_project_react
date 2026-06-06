@@ -15,3 +15,21 @@
   margin-top: 0.25rem;
   display: block;
 }
+
+.modal__actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.modal__secondary-btn {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+
+  color: rgba(0, 0, 0, 0.5);
+
+  font-family: "Cabinet Grotesk", Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+}

@@ -33,3 +33,23 @@
 .sidebar__signout-btn:hover {
   opacity: 0.6;
 }
+
+.sidebar__edit-btn {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.sidebar__avatar {
+  width: 56px;
+  height: 56px;
+
+  min-width: 56px;
+  min-height: 56px;
+
+  max-width: 56px;
+  max-height: 56px;
+
+  border-radius: 50%;
+  object-fit: cover;
+}
