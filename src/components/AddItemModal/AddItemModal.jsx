@@ -5,7 +5,7 @@ import ModalWithForm from "../ModalWithForm/ModalWithForm";
 const defaultFormValues = { name: "", weather: "", imageUrl: "" };
 
 // onAddItem refers to the submit handler declared in App.jsx
-function AddItemModal({ isOpen, onClose, handleAddItemSubmit }) {
+function AddItemModal({ isOpen, onClose, handleAddItemSubmit, isLoading }) {
   const { values, handleChange, errors, isSubmitted, setIsSubmitted, resetForm, validateAll } = useFormWithValidation(defaultFormValues);
 
   useEffect(() => {
@@ -25,7 +25,6 @@ function AddItemModal({ isOpen, onClose, handleAddItemSubmit }) {
     }
 
     handleAddItemSubmit(values);
-    resetForm();
   };
 
   return (
@@ -33,7 +32,7 @@ function AddItemModal({ isOpen, onClose, handleAddItemSubmit }) {
       isOpen={isOpen}
       onClose={onClose}
       title="New garment"
-      buttonText="Add garment"
+      buttonText={isLoading ? "Saving..." : "Add garment"}
       name="add-garment-form"
       handleSubmit={handleSubmit}
     >

@@ -12,7 +12,7 @@ function ItemModal({ card, isOpen, onClose, onDeleteItem }) {
   // }
   return (
     <div className={`modal ${isOpen ? "modal_is-opened" : ""}`} onClick={onClose}>
-      <div className="modal__container">
+      <div className="modal__container" onClick={(e) => e.stopPropagation()}>
         <button type="button" className="modal__close-btn" onClick={onClose}>
           <img src={modalCloseButton} alt="Close icon" />
         </button>

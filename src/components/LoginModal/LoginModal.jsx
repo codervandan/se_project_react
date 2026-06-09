@@ -7,7 +7,7 @@ const defaultFormValues = {
   password: "",
 };
 
-function LoginModal({ isOpen, onClose, handleLogin, onSwitchToRegister }) {
+function LoginModal({ isOpen, onClose, handleLogin, onSwitchToRegister, isLoading }) {
   const { values, handleChange, errors, isSubmitted, setIsSubmitted, resetForm, validateAll } = useFormWithValidation(defaultFormValues);
 
   useEffect(() => {
@@ -39,7 +39,7 @@ function LoginModal({ isOpen, onClose, handleLogin, onSwitchToRegister }) {
       isOpen={isOpen}
       onClose={onClose}
       title="Log In"
-      buttonText="Log In"
+      buttonText={isLoading ? "Logging in..." : "Log In"}
       secondaryButtonText="or Sign Up"
       onSecondaryClick={onSwitchToRegister}
       name="login-form"

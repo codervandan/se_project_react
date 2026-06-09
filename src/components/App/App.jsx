@@ -29,6 +29,7 @@ function App() {
   const [currentTempUnit, setCurrentTempUnit] = useState("F");
   const [currentUser, setCurrentUser] = useState({});
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   function handleOpenItemModal(card) {
     setActiveModal("item-modal");
@@ -65,28 +66,31 @@ function App() {
   }
 
   function handleAddItemSubmit(inputValues) {
-    console.log("ADDING ITEM:", inputValues);
+    setIsLoading(true);
 
     addItem(inputValues)
       .then((data) => {
-        console.log("ITEM CREATED:", data);
-
         setClothingItems((items) => [data, ...items]);
-
         handleCloseModal();
       })
-      .catch((err) => {
-        console.error("ADD ITEM ERROR:", err);
+      .catch(console.error)
+      .finally(() => {
+        setIsLoading(false);
       });
   }
 
   function handleDeleteItem(item) {
+    setIsLoading(true);
+
     deleteItem(item._id)
       .then(() => {
         setClothingItems((items) => items.filter((i) => i._id !== item._id));
         handleCloseModal();
       })
-      .catch(console.error);
+      .catch(console.error)
+      .finally(() => {
+        setIsLoading(false);
+      });
   }
 
   const handleCardLike = ({ id, isLiked }) => {
@@ -108,6 +112,8 @@ function App() {
   };
 
   const handleLogin = ({ email, password }) => {
+    setIsLoading(true);
+
     auth
       .signin({ email, password })
       .then((res) => {
@@ -120,7 +126,10 @@ function App() {
         setIsLoggedIn(true);
         handleCloseModal();
       })
-      .catch(console.error);
+      .catch(console.error)
+      .finally(() => {
+        setIsLoading(false);
+      });
   };
 
   const handleRegister = ({ name, avatar, email, password }) => {
@@ -151,16 +160,17 @@ function App() {
   };
 
   const handleUpdateProfile = ({ name, avatar }) => {
-    updateProfile({
-      name,
-      avatar,
-    })
+    setIsLoading(true);
+
+    updateProfile({ name, avatar })
       .then((updatedUser) => {
         setCurrentUser(updatedUser);
-
         handleCloseModal();
       })
-      .catch(console.error);
+      .catch(console.error)
+      .finally(() => {
+        setIsLoading(false);
+      });
   };
 
   const handleSignOut = () => {
@@ -207,6 +217,22 @@ function App() {
       })
       .catch(console.error);
   }, []);
+
+  useEffect(() => {
+    if (!activeModal) return;
+
+    const handleEscClose = (e) => {
+      if (e.key === "Escape") {
+        handleCloseModal();
+      }
+    };
+
+    document.addEventListener("keydown", handleEscClose);
+
+    return () => {
+      document.removeEventListener("keydown", handleEscClose);
+    };
+  }, [activeModal]);
 
   useEffect(() => {
     const token = localStorage.getItem("jwt");
@@ -263,6 +289,7 @@ function App() {
                       handleOpenItemModal={handleOpenItemModal}
                       handleSignOut={handleSignOut}
                       handleOpenEditProfileModal={handleOpenEditProfileModal}
+                      onCardLike={handleCardLike}
                     />
                   </ProtectedRoute>
                 }
@@ -279,6 +306,7 @@ function App() {
               isOpen={activeModal === "add-garment-modal"}
               onClose={handleCloseModal}
               handleAddItemSubmit={handleAddItemSubmit}
+              isLoading={isLoading}
             />
 
             <LoginModal
@@ -286,17 +314,20 @@ function App() {
               onClose={handleCloseModal}
               handleLogin={handleLogin}
               onSwitchToRegister={handleOpenRegisterModal}
+              isLoading={isLoading}
             />
             <EditProfileModal
               isOpen={activeModal === "edit-profile-modal"}
               onClose={handleCloseModal}
               onUpdateProfile={handleUpdateProfile}
+              isLoading={isLoading}
             />
             <RegisterModal
               isOpen={activeModal === "register-modal"}
               onClose={handleCloseModal}
               handleRegister={handleRegister}
               onSwitchToLogin={handleOpenLoginModal}
+              isLoading={isLoading}
             />
           </div>
         </div>

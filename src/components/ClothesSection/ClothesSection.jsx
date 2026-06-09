@@ -1,8 +1,7 @@
 import "./ClothesSection.css";
 import ItemCard from "../ItemCard/ItemCard";
 
-// TODO - make the item modal open on the profile route
-function ClothesSection({ clothingItems, handleOpenItemModal, handleOpenAddGarmentModal }) {
+function ClothesSection({ clothingItems, handleOpenItemModal, handleOpenAddGarmentModal, onCardLike }) {
   return (
     <section className="clothes-section__block">
       <div className="clothes-section__row">
@@ -13,7 +12,7 @@ function ClothesSection({ clothingItems, handleOpenItemModal, handleOpenAddGarme
       </div>
       <ul className="clothes-section__card-list">
         {clothingItems.map((item) => {
-          return <ItemCard key={item._id} data={item} onCardClick={handleOpenItemModal} />;
+          return <ItemCard key={item._id} data={item} onCardClick={handleOpenItemModal} onCardLike={onCardLike} />;
         })}
       </ul>
     </section>

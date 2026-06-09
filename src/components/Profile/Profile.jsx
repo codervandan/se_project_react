@@ -4,7 +4,7 @@ import { useContext } from "react";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 import "./Profile.css";
 
-function Profile({ clothingItems, handleOpenAddGarmentModal, handleOpenItemModal, handleSignOut, handleOpenEditProfileModal }) {
+function Profile({ clothingItems, handleOpenAddGarmentModal, handleOpenItemModal, handleSignOut, handleOpenEditProfileModal, onCardLike }) {
   const currentUser = useContext(CurrentUserContext);
 
   const userItems = clothingItems.filter((item) => item.owner === currentUser._id);
@@ -15,6 +15,7 @@ function Profile({ clothingItems, handleOpenAddGarmentModal, handleOpenItemModal
         clothingItems={userItems}
         handleOpenAddGarmentModal={handleOpenAddGarmentModal}
         handleOpenItemModal={handleOpenItemModal}
+        onCardLike={onCardLike}
       />
     </main>
   );

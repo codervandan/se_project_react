@@ -18,14 +18,17 @@
 
 .modal__actions {
   display: flex;
-  align-items: center;
-  gap: 12px;
+  align-items: baseline;
+  margin-top: 32px;
 }
 
 .modal__secondary-btn {
   border: none;
   background: transparent;
   cursor: pointer;
+
+  margin-left: 30px;
+  padding: 0;
 
   color: rgba(0, 0, 0, 0.5);
 

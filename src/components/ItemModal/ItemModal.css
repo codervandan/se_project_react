@@ -17,6 +17,9 @@
 
   visibility: hidden;
   opacity: 0;
+
+  z-index: 1000;
+
   transition:
     visibility 0.3s linear,
     opacity 0.5s linear;
@@ -42,7 +45,8 @@
   padding: 28px 28px 36px;
   max-width: 496px;
   width: 100%;
-  height: 375px;
+  /* height: 375px; */
+  min-height: fit-content;
   background-color: rgba(255, 255, 255, 1);
 }
 
@@ -63,7 +67,7 @@
   height: 34px;
   border-radius: 4px;
   border: none;
-  margin-top: 32px;
+  /* margin-top: 20px; */
   background-color: rgba(0, 0, 0, 1);
   color: white;
 }
