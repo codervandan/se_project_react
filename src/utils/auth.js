@@ -1,4 +1,4 @@
-const BASE_URL = "http://localhost:3001";
+const BASE_URL = process.env.NODE_ENV === "production" ? "https://api.wtwrdaniel.servernux.com" : "http://localhost:3001";
 
 export const signup = ({ name, avatar, email, password }) => {
   return fetch(`${BASE_URL}/signup`, {

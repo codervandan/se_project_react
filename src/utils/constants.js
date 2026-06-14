@@ -4,6 +4,8 @@ const getWeatherUrl = (latitude, longitude) =>
   `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=imperial&appid=${apiKey}`;
 const baseUrl = getWeatherUrl(coordinates.latitude, coordinates.longitude);
 
+// const baseUrl = process.env.NODE_ENV === "production" ? "https://api.wtwrdaniel.servernux.com" : "http://localhost:3001";
+
 const weatherConditionImages = {
   day: {
     sunny: {
