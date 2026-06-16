@@ -1,4 +1,4 @@
-const baseURL = process.env.NODE_ENV === "production" ? "https://api.wtwrdaniel.servernux.com" : "http://localhost:3001";
+const baseURL = import.meta.env.PROD ? "https://api.wtwrdaniel.servernux.com" : "http://localhost:3001";
 
 function getItems() {
   return fetch(`${baseURL}/items`).then((res) => {
